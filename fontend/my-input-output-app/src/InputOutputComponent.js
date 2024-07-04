@@ -111,7 +111,7 @@
 //       const result = await response.json();
 //       console.log('API response:', result); // Debug log
 
- 
+
 //     setApiResponse(result);
 //     } catch (error) {
 //       console.error('Error:', error);
@@ -196,11 +196,12 @@ const InputOutputComponent = () => {
       const result = await response.json();
       console.log('API response:', result); // Debug log
 
-      setApiResponse(result.natural_sen);
+      setApiResponse(result);
     } catch (error) {
       console.error('Error:', error);
       setError('Failed to fetch data from the server.');
     }
+    console.log(apiResponse);
   };
 
   return (
@@ -222,6 +223,7 @@ const InputOutputComponent = () => {
         wordWrap: 'break-word',
         whiteSpace: 'normal'
       }}>
+
         <strong>Gloss Sentence:</strong> {apiResponse}
       </div>
       {error && (

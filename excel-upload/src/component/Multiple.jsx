@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import FileSaver from 'file-saver';
 
-const FileUpload = () => {
+const Multiple = () => {
     const [selectedFile, setSelectedFile] = useState(null);
     const [isUploading, setIsUploading] = useState(false);
     const [error, setError] = useState(null);
@@ -68,23 +68,27 @@ const FileUpload = () => {
     };
 
     return (
-        <div>
-            <h2>Bulk Natural to Gloss</h2>
-            <form onSubmit={handleFileUpload}>
-                <input type="file" accept=".xlsx" onChange={handleFileChange} />
-                <button type="submit" disabled={isUploading}>Upload</button>
-            </form>
-            {error && <p style={{ color: 'red' }}>{error}</p>}
-            {isUploading ? (
-                <p>Uploading... Elapsed time: {formatTime(elapsedTime)}</p>
-            ) : (
-                elapsedTime > 0 && <p>Upload completed in {formatTime(elapsedTime)}.</p>
-            )}
+        <div className="">
+            <div className="card bg-base-100 w-96 shadow-xl mx-auto">
+                <div className="card-body">
+                    <h2 className="card-title">Bulk Natural to Gloss</h2>
+                    <form onSubmit={handleFileUpload}>
+                        <input type="file" accept=".xlsx" onChange={handleFileChange} />
+                        <button type="submit" className="btn btn-primary mt-2" disabled={isUploading}>Upload</button>
+                    </form>
+                    {error && <p style={{ color: 'red' }}>{error}</p>}
+                    {isUploading ? (
+                        <p>Uploading... Elapsed time: {formatTime(elapsedTime)}</p>
+                    ) : (
+                        elapsedTime > 0 && <p>Upload completed in {formatTime(elapsedTime)}.</p>
+                    )}
+                </div>
+            </div>
         </div>
     );
 };
 
-export default FileUpload;
+export default Multiple;
 
 
 

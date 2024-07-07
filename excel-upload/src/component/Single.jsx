@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 
 const Single = () => {
   const [inputValue, setInputValue] = useState('');
@@ -40,41 +41,37 @@ const Single = () => {
   };
 
   return (
-    <div className="pt-10">
-      <input
-        type="text"
-        value={inputValue}
-        onChange={handleInputChange}
-        style={{ marginBottom: '10px', padding: '5px', width: '300px' }}
-        placeholder="Type something..."
-      />
-      <br />
-      <button onClick={handleSubmit}>Submit</button>
-      <div style={{
-        marginTop: '10px',
-        padding: '10px',
-        border: '1px solid #ccc',
-        width: '300px',
-        wordWrap: 'break-word',
-        whiteSpace: 'normal'
-      }}>
-
-        <strong>Gloss Sentence:</strong> {apiResponse}
-      </div>
-      {error && (
-        <div style={{
-          marginTop: '10px',
-          padding: '10px',
-          border: '1px solid red',
-          color: 'red',
-          width: '300px',
-          wordWrap: 'break-word',
-          whiteSpace: 'normal'
-        }}>
-          <strong>Error:</strong> {error}
+    <div className="mx-auto max-w-md">
+      <Helmet>
+        <title>SLR| Singel</title>
+      </Helmet>
+      <div className="bg-white shadow-xl rounded-lg p-6">
+        <h2 className="card-title mb-2">Single Sentece to Gloss</h2>
+        <input
+          type="text"
+          value={inputValue}
+          onChange={handleInputChange}
+          className="input input-bordered input-primary w-full  mb-4"
+          placeholder="Enter Natural Sentence..."
+        />
+        <button
+          onClick={handleSubmit}
+          className="btn btn-outline btn-primary text-white py-2 rounded hover:bg-blue-700 min-w-full"
+        >
+          Submit
+        </button>
+        <div className="mt-4 p-2 border rounded word-wrap border-indigo-700">
+          <strong>Gloss Sentence :   </strong>
+          {apiResponse}
         </div>
-      )}
+        {error && (
+          <div className="mt-4 p-2 border border-red-500 text-red-500 rounded word-wrap">
+            <strong>Error:</strong> {error}
+          </div>
+        )}
+      </div>
     </div>
+
   );
 };
 

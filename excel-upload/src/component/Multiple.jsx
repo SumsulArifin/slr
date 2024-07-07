@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import FileSaver from 'file-saver';
+import { Helmet } from 'react-helmet-async';
 
 const Multiple = () => {
     const [selectedFile, setSelectedFile] = useState(null);
@@ -68,13 +69,20 @@ const Multiple = () => {
     };
 
     return (
-        <div className="">
+
+
+        <div className="flex justify-center items-center">
+            <Helmet>
+                <title>SLR| Bulk</title>
+            </Helmet>
             <div className="card bg-base-100 w-96 shadow-xl mx-auto">
                 <div className="card-body">
-                    <h2 className="card-title">Bulk Natural to Gloss</h2>
+                    <h2 className="card-title ">Bulk Natural to Gloss</h2>
                     <form onSubmit={handleFileUpload}>
-                        <input type="file" accept=".xlsx" onChange={handleFileChange} />
-                        <button type="submit" className="btn btn-primary mt-2" disabled={isUploading}>Upload</button>
+                        <input type="file" className="file-input file-input-bordered file-input-success w-full max-w-xs" accept=".xlsx" onChange={handleFileChange} />
+                        <div className="flex justify-center items-center">
+                            <button type="submit" className="btn btn-outline btn-success mt-5 min-w-full" disabled={isUploading}>Upload</button>
+                        </div>
                     </form>
                     {error && <p style={{ color: 'red' }}>{error}</p>}
                     {isUploading ? (
